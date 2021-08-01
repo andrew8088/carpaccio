@@ -4,6 +4,7 @@ import { generateTasks } from "../db";
 
 const STORAGE_KEY = "my-tasks";
 const STORE_LOCALLY = false;
+const NUM_TO_GENERATE = 20;
 
 function getInitialState(): Task[] {
   const storage = localStorage.getItem(STORAGE_KEY);
@@ -11,7 +12,7 @@ function getInitialState(): Task[] {
   if (storage && STORE_LOCALLY) {
     return JSON.parse(storage);
   } else {
-    return generateTasks(2);
+    return generateTasks(NUM_TO_GENERATE);
   }
 }
 
