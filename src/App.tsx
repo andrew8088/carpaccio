@@ -1,41 +1,18 @@
-import { useState } from "react";
-import { Task, DraftTask, TaskUtils } from "./Task";
+import { DraftTask, TaskUtils } from "./Task";
 import NewTaskForm from "./NewTaskForm";
 import TaskList from "./TaskList";
-import { generateTasks } from "./db";
-
-const STORAGE_KEY = "my-tasks";
-
-function getInitialState(): Task[] {
-  const storage = localStorage.getItem(STORAGE_KEY);
-
-  if (storage) {
-    return JSON.parse(storage);
-  } else {
-    return generateTasks(2);
-  }
-}
+import Toolbar from "./Toolbar";
+import useTasks from "./hooks/useTasks";
 
 export default function App() {
-  const [tasks, setTasksState] = useState<Task[]>(getInitialState());
-
-  const setTasks = (tasks: Task[]) => {
-    setTasksState(tasks);
-    // if (tasks.length) {
-    //   localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
-    // } else {
-    //   localStorage.removeItem(STORAGE_KEY);
-    // }
-  };
+  const [tasks, setTasks] = useTasks();
 
   const saveNewTask = (task: DraftTask) =>
     setTasks([...tasks, { ...task, id: TaskUtils.getId(tasks) }]);
 
   return (
     <div className="main">
-      <h1> Carpaccio.app </h1>
-
-      <button onClick={() => setTasks([])}> Clear State </button>
+      <Toolbar onClickAdd={() => null} onClickClear={() => setTasks([])} />
 
       <NewTaskForm saveNewTask={saveNewTask} />
 
