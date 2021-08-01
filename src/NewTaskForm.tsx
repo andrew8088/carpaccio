@@ -3,10 +3,11 @@ import { DraftTask, Tags } from "./Task";
 import TagList from "./TagList";
 
 interface NewTaskFormProps {
-  saveNewTask: (task: DraftTask) => void;
+  onSave: (task: DraftTask) => void;
+  onClose: () => void;
 }
 
-export default function NewTaskForm({ saveNewTask }: NewTaskFormProps) {
+export default function NewTaskForm({ onSave, onClose }: NewTaskFormProps) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState<Tags>({});
@@ -70,7 +71,7 @@ export default function NewTaskForm({ saveNewTask }: NewTaskFormProps) {
 
       <button
         onClick={() => {
-          saveNewTask({ title, description, tags });
+          onSave({ title, description, tags });
           setTitle("");
           setDescription("");
           setTags({});
@@ -78,6 +79,7 @@ export default function NewTaskForm({ saveNewTask }: NewTaskFormProps) {
       >
         Save
       </button>
+      <button onClick={onClose}>Close</button>
     </section>
   );
 }
