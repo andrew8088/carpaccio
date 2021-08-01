@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { DraftTask } from "./Task";
+import TagList from "./TagList";
 
 interface NewTaskFormProps {
   saveNewTask: (task: DraftTask) => void;
@@ -65,11 +66,7 @@ export default function NewTaskForm({ saveNewTask }: NewTaskFormProps) {
         </button>
       </p>
 
-      {Object.keys(tags).map((key, i) => (
-        <p key={i}>
-          <strong>{key}</strong>: {tags[key]}
-        </p>
-      ))}
+      <TagList tags={tags} />
 
       <button
         onClick={() => {

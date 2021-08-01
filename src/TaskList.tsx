@@ -1,4 +1,5 @@
 import { Task } from "./Task";
+import TaskCard from "./TaskCard";
 
 interface TaskListProps {
   tasks: Task[];
@@ -8,7 +9,7 @@ export default function TaskList({ tasks }: TaskListProps) {
   return (
     <ul>
       {tasks.map((t) => (
-        <li key={t.id}>{t.title}</li>
+        <TaskCard key={t.id} task={t} />
       ))}
     </ul>
   );
