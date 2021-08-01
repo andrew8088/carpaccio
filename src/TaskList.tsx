@@ -7,9 +7,17 @@ interface TaskListProps {
 
 export default function TaskList({ tasks }: TaskListProps) {
   return (
-    <ul>
+    <ul
+      style={{
+        listStyleType: "none",
+        margin: 0,
+        padding: 0,
+      }}
+    >
       {tasks.map((t) => (
-        <TaskCard key={t.id} task={t} />
+        <li>
+          <TaskCard key={t.id} task={t} />
+        </li>
       ))}
     </ul>
   );

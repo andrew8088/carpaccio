@@ -7,7 +7,7 @@ interface TaskCardProps {
 
 export default function TaskCard({ task }: TaskCardProps) {
   return (
-    <section style={{ border: "1px solid #ececec", borderRadius: "5px" }}>
+    <section className="taskCard">
       <h1>
         <strong>#{task.id}</strong>: {task.title}
       </h1>
