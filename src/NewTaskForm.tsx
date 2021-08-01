@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { DraftTask } from "./Task";
+import { DraftTask, Tags } from "./Task";
 import TagList from "./TagList";
 
 interface NewTaskFormProps {
@@ -9,7 +9,7 @@ interface NewTaskFormProps {
 export default function NewTaskForm({ saveNewTask }: NewTaskFormProps) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [tags, setTags] = useState<{ [key: string]: string }>({});
+  const [tags, setTags] = useState<Tags>({});
   const [key, setKey] = useState("");
   const [val, setVal] = useState("");
 

@@ -1,7 +1,7 @@
+import { Tags } from "./Task";
+
 interface TagListProps {
-  tags: {
-    [key: string]: string;
-  };
+  tags: Tags;
 }
 
 export default function Taglist({ tags }: TagListProps) {
