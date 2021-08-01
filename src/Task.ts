@@ -17,6 +17,6 @@ export class TaskUtils {
       if (t.id > max) max = t.id;
     });
 
-    return max++;
+    return ++max;
   }
 }
