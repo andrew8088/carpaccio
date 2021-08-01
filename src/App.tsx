@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { Task, DraftTask, TaskUtils } from "./Task";
+import NewTaskForm from "./NewTaskForm";
+import TaskList from "./TaskList";
 
-function App() {
+export default function App() {
+  const [tasks, setTasks] = useState<Task[]>([]);
+
+  const saveNewTask = (task: DraftTask) =>
+    setTasks([...tasks, { ...task, id: TaskUtils.getId(tasks) }]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main">
+      <h1> Carpaccio.app </h1>
+
+      <NewTaskForm saveNewTask={saveNewTask} />
+
+      <TaskList tasks={tasks} />
     </div>
   );
 }
-
-export default App;
