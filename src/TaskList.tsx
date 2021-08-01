@@ -15,7 +15,7 @@ export default function TaskList({ tasks }: TaskListProps) {
       }}
     >
       {tasks.map((t) => (
-        <li>
+        <li key={t.id}>
           <TaskCard key={t.id} task={t} />
         </li>
       ))}
