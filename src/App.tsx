@@ -2,17 +2,30 @@ import { useState } from "react";
 import { Task, DraftTask, TaskUtils } from "./Task";
 import NewTaskForm from "./NewTaskForm";
 import TaskList from "./TaskList";
+import { generateTasks } from "./db";
 
 const STORAGE_KEY = "my-tasks";
 
+function getInitialState(): Task[] {
+  const storage = localStorage.getItem(STORAGE_KEY);
+
+  if (storage) {
+    return JSON.parse(storage);
+  } else {
+    return generateTasks(2);
+  }
+}
+
 export default function App() {
-  const [tasks, setTasksState] = useState<Task[]>(
-    JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]")
-  );
+  const [tasks, setTasksState] = useState<Task[]>(getInitialState());
 
   const setTasks = (tasks: Task[]) => {
     setTasksState(tasks);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+    if (tasks.length) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+    } else {
+      localStorage.removeItem(STORAGE_KEY);
+    }
   };
 
   const saveNewTask = (task: DraftTask) =>
