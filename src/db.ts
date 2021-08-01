@@ -43,5 +43,10 @@ export function generateTags(): Tags {
   tags[team1] = state1;
   tags[team2] = state2;
 
+  tags.assignees = [
+    faker.name.firstName() + " " + faker.name.lastName(),
+    faker.name.firstName() + " " + faker.name.lastName(),
+  ];
+
   return tags;
 }

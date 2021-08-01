@@ -21,11 +21,11 @@ export default function App() {
 
   const setTasks = (tasks: Task[]) => {
     setTasksState(tasks);
-    if (tasks.length) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
-    } else {
-      localStorage.removeItem(STORAGE_KEY);
-    }
+    // if (tasks.length) {
+    //   localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+    // } else {
+    //   localStorage.removeItem(STORAGE_KEY);
+    // }
   };
 
   const saveNewTask = (task: DraftTask) =>

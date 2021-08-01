@@ -1,5 +1,5 @@
 export interface Tags {
-  [key: string]: string;
+  [key: string]: any;
 }
 
 export interface Task {
