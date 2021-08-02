@@ -1,4 +1,5 @@
-import { DraftTask, TaskUtils } from "./Task";
+import { DraftTask } from "./Task";
+import TaskUtils from "./TaskUtils";
 import NewTaskForm from "./NewTaskForm";
 import Toolbar from "./Toolbar";
 import useTasks from "./hooks/useTasks";
