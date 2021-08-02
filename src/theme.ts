@@ -1,8 +1,8 @@
-import { sketchy } from "@theme-ui/presets";
+import { swiss } from "@theme-ui/presets";
 import { Theme } from "theme-ui";
 
 const theme: Theme = {
-  ...sketchy,
+  ...swiss,
 } as Theme;
 
 export default theme;
