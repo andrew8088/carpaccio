@@ -4,7 +4,7 @@ import { generateTasks } from "../db";
 
 const STORAGE_KEY = "my-tasks";
 const STORE_LOCALLY = false;
-const NUM_TO_GENERATE = 20;
+const NUM_TO_GENERATE = 25;
 
 function getInitialState(): Task[] {
   const storage = localStorage.getItem(STORAGE_KEY);
