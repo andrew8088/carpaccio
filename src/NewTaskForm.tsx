@@ -1,6 +1,9 @@
 import { useState } from "react";
-import { DraftTask, Tags } from "./Task";
-import TagList from "./TagList";
+import { Flex, Box, Heading, Button } from "theme-ui";
+import LabelledInput from "./LabelledInput";
+import { DraftTask, TaskAttribute } from "./Task";
+import TaskAttributeEditor from "./TaskAttributeEditor";
+import { getOnChangeHandler } from "./utils";
 
 interface NewTaskFormProps {
   onSave: (task: DraftTask) => void;
@@ -10,76 +13,54 @@ interface NewTaskFormProps {
 export default function NewTaskForm({ onSave, onClose }: NewTaskFormProps) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [tags, setTags] = useState<Tags>({});
-  const [key, setKey] = useState("");
-  const [val, setVal] = useState("");
+  const [attributes, setAttributes] = useState<TaskAttribute[]>([]);
 
   return (
-    <section
-      style={{
-        border: "1px solid #ccc",
-        padding: "0 10px 10px 10px",
-      }}
-    >
-      <h1> Create New Task </h1>
+    <Box sx={{ maxWidth: "50%" }}>
+      <Heading mb={4}> Create New Task </Heading>
 
-      <p>
-        Title:
-        <input
-          type="text"
-          value={title}
-          onChange={(evt) => setTitle(evt.target.value)}
-        />
-      </p>
+      <LabelledInput
+        name="Title"
+        value={title}
+        onChange={getOnChangeHandler(setTitle)}
+        mb={4}
+      />
 
-      <p>
-        Description:{" "}
-        <textarea
-          value={description}
-          onChange={(evt) => setDescription(evt.target.value)}
-        />
-      </p>
+      <LabelledInput
+        name="Description"
+        value={description}
+        onChange={getOnChangeHandler(setDescription)}
+        mb={4}
+      />
 
-      <h2> Tags </h2>
+      <TaskAttributeEditor
+        attributes={attributes}
+        setAttributes={setAttributes}
+      />
 
-      <p>
-        <input
-          placeholder="key"
-          value={key}
-          onChange={(evt) => setKey(evt.target.value)}
-        />{" "}
-        <input
-          placeholder="value"
-          value={val}
-          onChange={(evt) => setVal(evt.target.value)}
-        />
-        <button
+      <Flex>
+        <Button
+          sx={{ flex: 1 }}
+          mr={1}
+          bg="muted"
+          color="text"
+          onClick={onClose}
+        >
+          Close
+        </Button>
+        <Button
+          sx={{ flex: 1 }}
+          ml={1}
           onClick={() => {
-            setTags({
-              ...tags,
-              [key]: val,
-            });
-            setKey("");
-            setVal("");
+            onSave({ title, description, attributes });
+            setTitle("");
+            setDescription("");
+            setAttributes([]);
           }}
         >
-          +
-        </button>
-      </p>
-
-      <TagList tags={tags} />
-
-      <button
-        onClick={() => {
-          onSave({ title, description, tags });
-          setTitle("");
-          setDescription("");
-          setTags({});
-        }}
-      >
-        Save
-      </button>
-      <button onClick={onClose}>Close</button>
-    </section>
+          Save
+        </Button>
+      </Flex>
+    </Box>
   );
 }

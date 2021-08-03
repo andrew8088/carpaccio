@@ -1,12 +1,14 @@
-export interface Tags {
-  [key: string]: any;
+export interface TaskAttribute {
+  meta?: string;
+  key: string;
+  value: string;
 }
 
 export interface Task {
   id: number;
   title: string;
   description: string;
-  tags?: Tags;
+  attributes: TaskAttribute[];
 }
 
 export interface DraftTask extends Omit<Task, "id"> {}

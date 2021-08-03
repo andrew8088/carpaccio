@@ -18,6 +18,7 @@ export default function KanbanBoard({ columns }: KanbanBoardProps) {
             {col.tasks.map((task, idx) => (
               <Box key={idx}>
                 <Heading as="h3">{task.title}</Heading>
+                <pre>{JSON.stringify(task.attributes)}</pre>
               </Box>
             ))}
           </Flex>

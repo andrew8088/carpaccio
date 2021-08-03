@@ -1,5 +1,5 @@
 import faker from "faker";
-import { Task, Tags } from "./Task";
+import { Task, TaskAttribute } from "./Task";
 
 export function generateTasks(n: number): Task[] {
   return Array(n).fill(0).map(generateTask);
@@ -10,7 +10,7 @@ export function generateTask(): Task {
     id: faker.datatype.number(),
     title: faker.lorem.words(4),
     description: faker.lorem.paragraph(),
-    tags: generateTags(),
+    attributes: generateAttrs(),
   };
 }
 
@@ -24,6 +24,7 @@ const TEAMS = [
   "Marketing",
   "Finance",
 ];
+
 const STATES = [
   "Inbox",
   "To Do",
@@ -32,21 +33,38 @@ const STATES = [
   "Completed",
 ];
 
-export function generateTags(): Tags {
-  const tags: Tags = {};
+const name = () => faker.name.firstName() + " " + faker.name.lastName();
 
-  const team1 = TEAMS[faker.datatype.number(TEAMS.length - 1)];
-  const team2 = TEAMS[faker.datatype.number(TEAMS.length - 1)];
-  const state1 = STATES[faker.datatype.number(STATES.length - 1)];
-  const state2 = STATES[faker.datatype.number(STATES.length - 1)];
+export function generateAttrs(): TaskAttribute[] {
+  const attrs: TaskAttribute[] = [];
 
-  tags[team1] = state1;
-  tags[team2] = state2;
+  attrs.push({
+    meta: "team",
+    key: TEAMS[faker.datatype.number(TEAMS.length - 1)],
+    value: STATES[faker.datatype.number(STATES.length - 1)],
+  });
 
-  tags.assignees = [
-    faker.name.firstName() + " " + faker.name.lastName(),
-    faker.name.firstName() + " " + faker.name.lastName(),
-  ];
+  attrs.push({
+    meta: "team",
+    key: TEAMS[faker.datatype.number(TEAMS.length - 1)],
+    value: STATES[faker.datatype.number(STATES.length - 1)],
+  });
 
-  return tags;
+  attrs.push({
+    meta: "assignee",
+    key: name(),
+    value: "product",
+  });
+  attrs.push({
+    meta: "assignee",
+    key: name(),
+    value: "design",
+  });
+  attrs.push({
+    meta: "assignee",
+    key: name(),
+    value: "eng",
+  });
+
+  return attrs;
 }
