@@ -1,15 +1,23 @@
-import { Button } from "theme-ui";
+import { Flex, Button, Box } from "theme-ui";
 interface ToolbarProps {
-  onClickAdd: () => void;
+  addTaskText: string;
+  onToggleAddTask: () => void;
   onClickClear: () => void;
 }
 
-export default function Toolbar({ onClickClear, onClickAdd }: ToolbarProps) {
+export default function Toolbar({
+  onClickClear,
+  addTaskText,
+  onToggleAddTask,
+}: ToolbarProps) {
   return (
-    <header>
-      <h1 style={{ display: "inline-block", marginTop: "0" }}>Carpaccio.app</h1>
-      <Button onClick={onClickClear}> Clear State </Button>
-      <Button onClick={onClickAdd}> Add Task </Button>
-    </header>
+    <Flex as="header" mb={4}>
+      <h1 style={{ margin: "0" }}>Carpaccio.app</h1>
+      <Box sx={{ mx: "auto" }} />
+      <Button mr={1} bg="muted" color="text" onClick={onClickClear}>
+        Clear State
+      </Button>
+      <Button onClick={onToggleAddTask}>{addTaskText}</Button>
+    </Flex>
   );
 }

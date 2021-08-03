@@ -13,7 +13,9 @@ interface NewTaskFormProps {
 export default function NewTaskForm({ onSave, onClose }: NewTaskFormProps) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [attributes, setAttributes] = useState<TaskAttribute[]>([]);
+  const [attributes, setAttributes] = useState<TaskAttribute[]>([
+    { meta: "", key: "", value: "" },
+  ]);
 
   return (
     <Box sx={{ maxWidth: "50%" }}>

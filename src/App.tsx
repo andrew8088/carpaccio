@@ -19,7 +19,8 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <Flex sx={{ flexDirection: "column" }} p={2}>
         <Toolbar
-          onClickAdd={() => setShowNewTaskForm(true)}
+          addTaskText={showNewTaskForm ? "Hide Form" : "Add Task"}
+          onToggleAddTask={() => setShowNewTaskForm(!showNewTaskForm)}
           onClickClear={() => setTasks([])}
         />
 
