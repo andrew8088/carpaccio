@@ -7,6 +7,7 @@ import { useState } from "react";
 import { ThemeProvider, Flex } from "theme-ui";
 import theme from "./theme";
 import KanbanBoard from "./KanbanBoard";
+import KanbanColumn from "./KanbanColumn";
 
 export default function App() {
   const [tasks, setTasks] = useTasks();
@@ -30,15 +31,16 @@ export default function App() {
             onClose={() => setShowNewTaskForm(false)}
           />
         ) : (
-          <KanbanBoard
-            columns={[
-              { name: "Inbox", tasks: tasks.slice(0, 4) },
-              { name: "To Do", tasks: tasks.slice(5, 9) },
-              { name: "In Progress", tasks: tasks.slice(10, 14) },
-              { name: "Measuring / Watching", tasks: tasks.slice(15, 19) },
-              { name: "Completed", tasks: tasks.slice(20, 24) },
-            ]}
-          />
+          <KanbanBoard>
+            <KanbanColumn title="Inbox" tasks={tasks.slice(0, 4)} />
+            <KanbanColumn title="To Do" tasks={tasks.slice(5, 9)} />
+            <KanbanColumn title="In Progress" tasks={tasks.slice(10, 14)} />
+            <KanbanColumn
+              title="Measuring / Watching"
+              tasks={tasks.slice(15, 19)}
+            />
+            <KanbanColumn title="Completed" tasks={tasks.slice(20, 24)} />
+          </KanbanBoard>
         )}
       </Flex>
     </ThemeProvider>
