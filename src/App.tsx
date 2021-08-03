@@ -23,21 +23,22 @@ export default function App() {
           onClickClear={() => setTasks([])}
         />
 
-        {showNewTaskForm && (
+        {showNewTaskForm ? (
           <NewTaskForm
             onSave={saveNewTask}
             onClose={() => setShowNewTaskForm(false)}
           />
+        ) : (
+          <KanbanBoard
+            columns={[
+              { name: "Inbox", tasks: tasks.slice(0, 4) },
+              { name: "To Do", tasks: tasks.slice(5, 9) },
+              { name: "In Progress", tasks: tasks.slice(10, 14) },
+              { name: "Measuring / Watching", tasks: tasks.slice(15, 19) },
+              { name: "Completed", tasks: tasks.slice(20, 24) },
+            ]}
+          />
         )}
-        <KanbanBoard
-          columns={[
-            { name: "Inbox", tasks: tasks.slice(0, 4) },
-            { name: "To Do", tasks: tasks.slice(5, 9) },
-            { name: "In Progress", tasks: tasks.slice(10, 14) },
-            { name: "Measuring / Watching", tasks: tasks.slice(15, 19) },
-            { name: "Completed", tasks: tasks.slice(20, 24) },
-          ]}
-        />
       </Flex>
     </ThemeProvider>
   );
