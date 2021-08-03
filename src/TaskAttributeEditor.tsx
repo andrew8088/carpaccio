@@ -23,7 +23,9 @@ export default function TaskAttributeEditor({
   };
 
   const removeAttribute = (idx: number) => {
-    setAttributes(attributes.splice(idx + 1, 1));
+    const a = [...attributes];
+    a.splice(idx, 1);
+    setAttributes(a);
   };
 
   return (
