@@ -1,18 +1,18 @@
-import { TaskAttribute } from "./Task";
+import { Attribute } from "./Attribute";
 import { Button, Flex, Box, Label } from "theme-ui";
 import { getOnChangeHandler } from "./utils";
 import LabelledInput from "./LabelledInput";
 
-interface TaskAttributeEditorProps {
-  attributes: TaskAttribute[];
-  setAttributes: (attrs: TaskAttribute[]) => void;
+interface AttributeEditorProps {
+  attributes: Attribute[];
+  setAttributes: (attrs: Attribute[]) => void;
 }
 
-export default function TaskAttributeEditor({
+export default function AttributeEditor({
   attributes,
   setAttributes,
-}: TaskAttributeEditorProps) {
-  const change = (idx: number, key: keyof TaskAttribute) => (val: string) => {
+}: AttributeEditorProps) {
+  const change = (idx: number, key: keyof Attribute) => (val: string) => {
     const a = [...attributes];
     a[idx][key] = val;
     setAttributes(a);

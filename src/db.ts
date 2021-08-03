@@ -1,5 +1,6 @@
 import faker from "faker";
-import { Task, TaskAttribute } from "./Task";
+import { Task } from "./Task";
+import { Attribute } from "./Attribute";
 
 export function generateTasks(n: number): Task[] {
   return Array(n).fill(0).map(generateTask);
@@ -35,8 +36,8 @@ const STATES = [
 
 const name = () => faker.name.firstName() + " " + faker.name.lastName();
 
-export function generateAttrs(): TaskAttribute[] {
-  const attrs: TaskAttribute[] = [];
+export function generateAttrs(): Attribute[] {
+  const attrs: Attribute[] = [];
 
   attrs.push({
     meta: "team",

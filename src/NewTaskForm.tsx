@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Flex, Box, Heading, Button } from "theme-ui";
 import LabelledInput from "./LabelledInput";
-import { DraftTask, TaskAttribute } from "./Task";
-import TaskAttributeEditor from "./TaskAttributeEditor";
+import { DraftTask } from "./Task";
+import { Attribute } from "./Attribute";
+import AttributeEditor from "./AttributeEditor";
 import { getOnChangeHandler } from "./utils";
 
 interface NewTaskFormProps {
@@ -13,7 +14,7 @@ interface NewTaskFormProps {
 export default function NewTaskForm({ onSave, onClose }: NewTaskFormProps) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [attributes, setAttributes] = useState<TaskAttribute[]>([
+  const [attributes, setAttributes] = useState<Attribute[]>([
     { meta: "", key: "", value: "" },
   ]);
 
@@ -35,10 +36,7 @@ export default function NewTaskForm({ onSave, onClose }: NewTaskFormProps) {
         mb={4}
       />
 
-      <TaskAttributeEditor
-        attributes={attributes}
-        setAttributes={setAttributes}
-      />
+      <AttributeEditor attributes={attributes} setAttributes={setAttributes} />
 
       <Flex>
         <Button

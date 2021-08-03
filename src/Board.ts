@@ -1,3 +1,5 @@
+import { Attribute } from "./Attribute";
+
 export interface Board {
   id: number;
 }
