@@ -11,3 +11,5 @@ export const getMaxId = (records: { id: number }[]): number => {
 
   return max;
 };
+
+export type Brand<K, T> = K & { __brand: T };
